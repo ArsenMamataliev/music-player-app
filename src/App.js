@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react';
+import data from './data';
+import './index';
+import MusicList from './components/MusicList';
+import Photo from './components/Photo';
+import WaveForm from './components/WaveForm';
+
 
 function App() {
+  const [index, setIndex] = useState(5);
+  const {id, author, musicUrl, photo} = data[index];
+  const [showListOfSongs,setShowListOfSongs] = useState(true);
+  const [playList, setPlayList] = useState();
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <h3> Singer: {author}</h3>
+        <Photo photo = {photo} index = {index}/>
+        <WaveForm musicUrl = {musicUrl} index = {index} setIndex= {setIndex} 
+        id = {id} showListOfSongs= {showListOfSongs}  setShowListOfSongs = {setShowListOfSongs}
+        data = {data} playList = {playList}/>
+        {showListOfSongs && <MusicList data = {data} setIndex = {setIndex} setPlayList = {setPlayList}/>}
+      </div>
     </div>
   );
 }
