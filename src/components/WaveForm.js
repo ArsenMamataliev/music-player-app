@@ -32,7 +32,7 @@ function WaveForm({musicUrl, index, setShowListOfSongs, showListOfSongs , id, se
         
      
     }, 
-        [index]
+        []
     );
 
     useEffect(() =>{
